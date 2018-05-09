@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light {{Request::is('/') ? ''  : ''}}" id="ftco-navbar">
+<nav class="navbar navbar-expand-lg
+  {{Request::is('/') ? 'navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light'  : 'navbar-light fixed-top bg-light'}}" id="ftco-navbar">
   <div class="container">
     <a class="navbar-brand" href="{{route('main.page')}}">Taste</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,13 +8,20 @@
 
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="#section-home" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#section-about" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#section-offer" class="nav-link">Offer</a></li>
-        <li class="nav-item"><a href="#section-menu" class="nav-link">Menu</a></li>
-        <li class="nav-item"><a href="#section-news" class="nav-link">News</a></li>
-        <li class="nav-item"><a href="#section-gallery" class="nav-link">Gallery</a></li>
-        <li class="nav-item"><a href="#section-contact" class="nav-link">Contact</a></li>
+        @if (Request::is('/'))
+          <li class="nav-item active"><a href="#section-home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="#section-about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#section-offer" class="nav-link">Offer</a></li>
+          <li class="nav-item"><a href="#section-menu" class="nav-link">Menu</a></li>
+          <li class="nav-item"><a href="#section-news" class="nav-link">News</a></li>
+          <li class="nav-item"><a href="#section-gallery" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="#section-contact" class="nav-link">Contact</a></li>
+        @else
+          <li class="nav-item"><a href="{{route('dishes.index')}}" class="nav-link">Dishes</a></li>
+          <li class="nav-item"><a href="#section-offer" class="nav-link">Mains</a></li>
+          <li class="nav-item"><a href="#section-menu" class="nav-link">Users</a></li>
+          <li class="nav-item"><a href="#section-menu" class="nav-link">Orders</a></li>
+        @endif
         @guest
             <li class="nav-item"><a class="nav-link" href="void(0)" data-toggle="modal" data-target="#loginModal">{{ __('Login') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="void(0)" data-toggle="modal" data-target="#registerModal">{{ __('Register') }}</a></li>
@@ -24,7 +32,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{route('dishes.index')}}">Dishes</a>
+                    <a class="dropdown-item" href="{{route('admin.page')}}">Admin panel</a>
                     <a class="dropdown-item" href="{{('logout') }}"
                        onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
@@ -37,7 +45,9 @@
                 </div>
             </li>
         @endguest
-      </ul>
+
+    </ul>
+
     </div>
   </div>
 </nav>

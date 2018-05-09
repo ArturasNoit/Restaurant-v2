@@ -32,5 +32,9 @@ class MainsSeeder extends Seeder
           'title' =>'Dinner'
         ]);
 
+        $this->main->create([
+          'title' =>'Specials'
+        ]);
+
     }
 }

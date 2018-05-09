@@ -10,54 +10,51 @@
               <small>CLOSE </small><span aria-hidden="true">&times;</span>
             </button>
             <h1 class="mb-4">Reserve A Table</h1>
-            <form action="#" method="post">
+
+            <form action="{{route('reservations.store')}}" method="post">
+              @csrf
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label for="m_fname">First Name</label>
-                  <input type="text" class="form-control" id="m_fname">
+                  <label for="name">First Name</label>
+                  <input type="text" name="name" value="{{Auth::check() ? Auth::user()->name : '' }}" class="form-control" id="name">
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="m_lname">Last Name</label>
-                  <input type="text" class="form-control" id="m_lname">
+                  <label for="surname">Last Name</label>
+                  <input type="text" name="surname" value="{{Auth::check() ? Auth::user()->surname : '' }}" class="form-control" id="surname">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12 form-group">
-                  <label for="m_email">Email</label>
-                  <input type="email" class="form-control" id="m_email">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" value="{{Auth::check() ? Auth::user()->email : '' }}" class="form-control" id="email">
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <label for="m_people">How Many People</label>
-                  <select name="" id="m_people" class="form-control">
+                  <label for="people_amount">How Many People</label>
+                  <select name="people_amount" id="people_amount" class="form-control">
                     <option value="1">1 People</option>
                     <option value="2">2 People</option>
                     <option value="3">3 People</option>
-                    <option value="4+">4+ People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6+">6+ People</option>
                   </select>
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="m_phone">Phone</label>
-                  <input type="text" class="form-control" id="m_phone">
+                  <label for="phone">Phone</label>
+                  <input type="text" name="phone" value="{{Auth::check() ? Auth::user()->phone : '' }}" class="form-control" id="phone">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="m_date">Date</label>
-                  <input type="text" class="form-control" id="m_date">
+                  <input type="text" name="date" class="form-control" id="m_date">
                 </div>
                 <div class="col-md-6 form-group">
                   <label for="m_time">Time</label>
-                  <input type="text" class="form-control" id="m_time">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12 form-group">
-                  <label for="m_message">Message</label>
-                  <textarea class="form-control" id="m_message" cols="30" rows="7"></textarea>
+                  <input type="text" name="time" class="form-control" id="m_time">
                 </div>
               </div>
 
@@ -68,6 +65,7 @@
               </div>
 
             </form>
+
           </div>
         </div>
 

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Main;
+use App\Dish;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $mains = Main::all();
+        $promos = Dish::latest()->take(9)->get();
+        return view('welcome', compact('mains', 'promos'));
+    }
+
+    public function showAdminPanel()
+    {
+        return view('admin');
     }
 }

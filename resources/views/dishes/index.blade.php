@@ -32,7 +32,7 @@
         </tr>
         @foreach ($dishes as $dish)
         <tr>
-            <td>{{ $dish->id }}</td>
+            <td>{{ ++$i}}</td>
             <td>{{ $dish->title }}</td>
             <td>{{ str_limit($dish->description, 200) }}</td>
             <td>{{ $dish->price }}</td>

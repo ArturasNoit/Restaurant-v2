@@ -38,7 +38,7 @@ class DishesSeeder extends Seeder
        $this->dish->create([
        'title' => $faker->name(),
        'description' => $faker->sentence(200),
-       'image_url' => $faker->imageUrl(800, 600, 'food'),
+       'image_url' => $faker->imageUrl(800, 800, 'food'),
        'price' => $faker->numberBetween(10, 100),
        'main_id' => $main_ids->random(),
        'created_at' => new \DateTime(),

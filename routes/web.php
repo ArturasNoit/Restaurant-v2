@@ -11,12 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('main.page');
+Route::get('/', 'HomeController@index')->name('main.page');
+Route::get('/admin', 'HomeController@showAdminPanel')->name('admin.page');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('dishes', 'DishController');
+
+Route::post('/reservations', 'ReservationController@store')->name('reservations.store');
+
+// Route::get("/email", function() {
+//    Mail::raw('Now I know how to send emails with Laravel', function($message)
+// 	{
+// 		$message->subject('Hi There!!');
+// 		$message->from(config('mail.from.address'), config("app.name"));
+// 		$message->to('montvidas.arturas@gmail.com');
+// 	});
+// });

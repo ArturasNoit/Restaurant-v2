@@ -9,9 +9,13 @@
 
     @include('layout.footer')
 
-    @include('modals.reservation')
-    @include('modals.login')
-    @include('modals.register')
+    @if (Request::is('/'))
+      @include('modals.reservation')
+    @endif
+    @guest
+      @include('modals.login')
+      @include('modals.register')
+    @endguest
     @include('layout.scripts')
   </body>
 </html>

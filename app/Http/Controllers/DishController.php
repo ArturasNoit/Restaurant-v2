@@ -16,7 +16,8 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::latest()->paginate(10);
-        return view('dishes.index', compact('dishes'));
+        return view('dishes.index', compact('dishes'))
+          ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
